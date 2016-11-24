@@ -18,12 +18,11 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module MUX_5_2_1(
-	input [4:0] A,
-	input [4:0] B,
-	input			Sel,
-	output [4:0] O
-    );
+module MUX_5_2_1(A, B, Sel, O);
+	input		[4:0]	A;
+	input		[4:0]	B;
+	input				Sel;
+	output	[4:0] O;
 
 	assign O = Sel ? B : A;
 

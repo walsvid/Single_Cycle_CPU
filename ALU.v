@@ -18,12 +18,12 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module ALU(
-	input [31:0] A,B,
-	input [2:0] ALU_operation,
-	output [31:0] Result,
-	output	Zero
-    );
+module ALU(A, B, ALU_operation, Result, Zero);
+	input		[31:0]	A;
+	inout		[31:0]	B;
+	input		[2:0]		ALU_operation;
+	output	[31:0]	Result;
+	output				Zero;
 
 	assign Result = (ALU_operation == 3'b000) ? A + B :
 						 (ALU_operation == 3'b100) ? A - B :

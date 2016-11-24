@@ -18,23 +18,25 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module RegFile(
-    input [4:0] Rn1, Rn2, Wn,
-	 input Write,
-	 input [31:0] Wd,
-	 output [31:0]	A,B,
-	 input Clock
-	 );
+module RegFile(Ra, Rb, Rw, Clock, Write, busW, busA, busB);
+	input		[4:0]		Ra;
+	input		[4:0]		Rb;
+	input		[4:0]		Rw;
+	input					Clock;
+	input					Write;
+	input		[31:0] 	busW;
+	output	[31:0]	busA;
+	output	[31:0]	busB;
 
 	reg [31:0] Register[1:31];
 	
 	//Read Data
-	assign A = (Rn1 == 0) ? 0 : Register[Rn1];
-	assign B = (Rn2 == 0) ? 0 : Register[Rn2];
+	assign busA = (Ra == 0) ? 0 : Register[Ra];
+	assign busB = (Rb == 0) ? 0 : Register[Rb];
 	
 	//Write Data 
 	always @ (posedge Clock) begin
-		if ((Write) && (Wn != 0)) Register[Wn] <= Wd;
+		if ((Write) && (Rw != 0)) Register[Rw] <= busW;
 	end
 
 endmodule
