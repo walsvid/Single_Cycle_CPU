@@ -1,6 +1,12 @@
 # Single_Cycle_CPU
 Single Cycle MIPS CPU using Verilog HDL.
 
+## 组成
+- ALU
+- Controller 控制器
+- Fetch Instruction Circuit 取指电路
+- 寄存器堆
+
 ## 准备实现的指令
 
 ### R型指令
@@ -30,6 +36,7 @@ Single Cycle MIPS CPU using Verilog HDL.
 |  lw  | 100011  |   rs    |   rt    |  offset   |  取数据  |
 |  sw  | 101011  |   rs    |   rt    |  offset   |  存数据  |
 | beq  | 000100  |   rs    |   rt    |  offset   | 相等转移  |
+| lui  | 001111  |  00000  |   rt    | immediate | 设置高位  |
 
 ### J型指令
 
@@ -38,3 +45,19 @@ Single Cycle MIPS CPU using Verilog HDL.
 |  指令  | [31:26] | [25:0]  |  功能  |
 |  j   | 000010  | address |  跳转  |
 | jal  | 000011  | address | 过程调用 |
+
+## 完成情况
+### 取指电路
+- [x] `R`，`I`，`J`三种类型的指令取值
+- [x] `PC` 寄存器
+
+### ALU
+- [x] `+`
+- [x] `-`
+- [x] `&`
+- [x] `|`
+- [x] `^`
+- [x] `lui`
+
+# 寄存器堆
+- [x] 简单读写
