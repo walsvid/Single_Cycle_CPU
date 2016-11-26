@@ -4,7 +4,7 @@
 // Company: 
 // Engineer:
 //
-// Create Date:   21:10:35 11/26/2016
+// Create Date:   21:10:35 11/26/5016
 // Design Name:   Control_Unit
 // Module Name:   C:/Users/wen/git/Single_Cycle_CPU/Control_Unit_tb.v
 // Project Name:  Single_Cycle_CPU
@@ -56,56 +56,57 @@ module Control_Unit_tb;
 
 	initial begin
 		// Initialize Inputs
-		op = 0;
-		func = 0;
+		op = 6'bxxxxxx;
+		func = 6'bxxxxxx;
 
 		// Wait 100 ns for global reset to finish
-		#20;
+		#50;
 		func = 6'b100000;
 		op = 6'b000000;
-		#20;
+		#50;
 		func = 6'b100010;
 		op = 6'b000000;
-		#20;
+		#50;
 		func = 6'b100100;
 		op = 6'b000000;
-		#20;
+		#50;
 		func = 6'b100101;
 		op = 6'b000000;
-		#20;
+		#50;
 		func = 6'b100110;
 		op = 6'b000000;
-		#20;
+		#50;
 		func = 6'b000000;
 		op = 6'b000000;
-		#20;
+		#50;
 		func = 6'b000010;
 		op = 6'b000000;
-		#20;
+		#50;
 		func = 6'b000011;
 		op = 6'b000000;
-		#20;
+		#50;
 		func = 6'b001000;
 		op = 6'b000000;
-		#20;
+		#50;
+		func = 6'bxxxxxx;
 		op = 6'b001000;
-		#20;
+		#50;
 		op = 6'b001100;
-		#20;
+		#50;
 		op = 6'b001101;
-		#20;
+		#50;
 		op = 6'b001110;
-		#20;
+		#50;
 		op = 6'b100011;
-		#20;
+		#50;
 		op = 6'b101011;
-		#20;
+		#50;
 		op = 6'b000100;
-		#20;
+		#50;
 		op = 6'b001111;
-		#20;
+		#50;
 		op = 6'b000010;
-		#20;
+		#50;
 		op = 6'b000011;
 
         
