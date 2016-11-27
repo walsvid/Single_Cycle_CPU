@@ -19,7 +19,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module SHIFTER(data, Sa, Right, Arith, O);
-	input [31:0] data;
+	input signed[31:0] data;
 	input [4:0] Sa;
 	input Right;
 	input Arith;
@@ -28,7 +28,7 @@ module SHIFTER(data, Sa, Right, Arith, O);
 	always @(*) begin
 		if(!Right)			O = data << Sa;
 		else if (!Arith)	O = data >> Sa;
-		else 					O = $signed(data) >> Sa;
+		else 					O = data >>> Sa;
 	end
 
 endmodule
