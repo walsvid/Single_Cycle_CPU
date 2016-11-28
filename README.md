@@ -36,6 +36,7 @@ Single Cycle MIPS CPU using Verilog HDL.
 |  lw  | 100011  |   rs    |   rt    |  offset   |  取数据  |
 |  sw  | 101011  |   rs    |   rt    |  offset   |  存数据  |
 | beq  | 000100  |   rs    |   rt    |  offset   | 相等转移  |
+| bne  | 000101  |   rs    |   rt    |  offset   | 不等转移  |
 | lui  | 001111  |  00000  |   rt    | immediate | 设置高位  |
 
 ### J型指令
