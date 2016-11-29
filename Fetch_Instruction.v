@@ -18,14 +18,14 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module Fetch_Instruction(Branch, Jump, Clock, Reset, Zero, Inst, t1);
+module Fetch_Instruction(op, Branch, Jump, Clock, Reset, Zero, Inst);
+	input [5:0] op;
 	input Branch;
 	input Jump;
 	input Clock;
 	input Reset;
 	input Zero;
 	output [31:0]	Inst;
-	output [31:0] t1;
 	
 	wire [31:0] next_pc, addr, pc_4, imm32, imm32_4, pc_b, pc_s_b, pc_j;
 	// pc_4 : pc+4
@@ -59,6 +59,4 @@ module Fetch_Instruction(Branch, Jump, Clock, Reset, Zero, Inst, t1);
 	
 	MUX_32_2_1 mux_jump(pc_s_b, pc_j, Jump, next_pc);
 	
-	//assign next_pc = pc_s_b;
-	assign t1 = addr;
 endmodule

@@ -33,7 +33,6 @@ module Fetch_Instruction_tb;
 
 	// Outputs
 	wire [31:0] Inst;
-	wire [31:0] t1;
 
 	// Instantiate the Unit Under Test (UUT)
 	Fetch_Instruction uut (
@@ -42,8 +41,7 @@ module Fetch_Instruction_tb;
 		.Clock(Clock), 
 		.Reset(Reset), 
 		.Zero(Zero), 
-		.Inst(Inst), 
-		.t1(t1)
+		.Inst(Inst)
 	);
 
 	initial begin
