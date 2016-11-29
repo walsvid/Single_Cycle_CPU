@@ -50,6 +50,7 @@ Single Cycle MIPS CPU using Verilog HDL.
 ### 取指电路
 - [x] `R`，`I`，`J`三种类型的指令取值
 - [x] `PC` 寄存器
+- [] `PCselect`
 
 ### ALU
 - [x] `+`
@@ -58,6 +59,7 @@ Single Cycle MIPS CPU using Verilog HDL.
 - [x] `|`
 - [x] `^`
 - [x] `lui`
+- [x] 移位运算
 
 # 寄存器堆
 - [x] 简单读写
