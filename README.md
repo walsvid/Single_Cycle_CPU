@@ -49,9 +49,10 @@ Single Cycle MIPS CPU using Verilog HDL.
 
 ## 完成情况
 ### 取指电路
-- [x] `R`，`I`，`J`三种类型的指令取值
+- [x] `R`，`I`，`J`三种类型的指令取址
 - [x] `PC` 寄存器
 - [] `PCselect`
+- [] op 在外部计算
 
 ### ALU
 - [x] `+`
