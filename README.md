@@ -65,3 +65,4 @@ Single Cycle MIPS CPU using Verilog HDL.
 
 # 寄存器堆
 - [x] 简单读写
+- [] BusA，BusB 都使用多路选择器
