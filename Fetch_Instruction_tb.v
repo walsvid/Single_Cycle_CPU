@@ -4,7 +4,7 @@
 // Company: 
 // Engineer:
 //
-// Create Date:   22:06:25 11/24/2016
+// Create Date:   20:26:58 12/02/2016
 // Design Name:   Fetch_Instruction
 // Module Name:   C:/Users/wen/git/Single_Cycle_CPU/Fetch_Instruction_tb.v
 // Project Name:  Single_Cycle_CPU
@@ -25,56 +25,59 @@
 module Fetch_Instruction_tb;
 
 	// Inputs
-	reg Branch;
-	reg Jump;
 	reg Clock;
 	reg Reset;
 	reg Zero;
+	reg [31:0] reg31;
 
 	// Outputs
 	wire [31:0] Inst;
+	wire [4:0] tmp1;
+	wire tmp2;
+	wire tmp3;
+	wire tmp4;
 
 	// Instantiate the Unit Under Test (UUT)
 	Fetch_Instruction uut (
-		.Branch(Branch), 
-		.Jump(Jump), 
 		.Clock(Clock), 
 		.Reset(Reset), 
 		.Zero(Zero), 
-		.Inst(Inst)
+		.reg31(reg31), 
+		.Inst(Inst), 
+		.tmp1(tmp1), 
+		.tmp2(tmp2), 
+		.tmp3(tmp3), 
+		.tmp4(tmp4)
 	);
 
 	initial begin
 		// Initialize Inputs
-		Branch = 0;
-		Jump = 1;
 		Clock = 0;
 		Reset = 1;
 		Zero = 0;
+		reg31 = 32'h0D;
 
 		// Wait 100 ns for global reset to finish
-		#100;
+		#50;
       Clock = ~Clock;
 		Reset = 0;
-		Jump = 0;
-		#100;
+		#50;
       Clock = ~Clock;
-		#100;
+		#50;
       Clock = ~Clock;
-		#100;
+		#50;
       Clock = ~Clock;		
-		#100;
+		#50;
       Clock = ~Clock;
-		#100;
+		#50;
       Clock = ~Clock;
-		#100;
+		#50;
       Clock = ~Clock;
-		#100;
+		#50;
       Clock = ~Clock;
-		#100;
+		#50;
       Clock = ~Clock;		
 		// Add stimulus here
-
 	end
       
 endmodule
