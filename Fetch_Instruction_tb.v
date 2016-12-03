@@ -31,6 +31,7 @@ module Fetch_Instruction_tb;
 	reg [31:0] reg31;
 
 	// Outputs
+	wire [31:0] w_reg31;
 	wire [31:0] Inst;
 
 	// Instantiate the Unit Under Test (UUT)
@@ -38,7 +39,8 @@ module Fetch_Instruction_tb;
 		.Clock(Clock), 
 		.Reset(Reset), 
 		.Zero(Zero), 
-		.reg31(reg31), 
+		.reg31(reg31),
+		.w_reg31(w_reg31),
 		.Inst(Inst)
 	);
 
@@ -47,7 +49,7 @@ module Fetch_Instruction_tb;
 		Clock = 0;
 		Reset = 1;
 		Zero = 0;
-		reg31 = 32'h0D;
+		reg31 = 32'h0;
 
 		// Wait 100 ns for global reset to finish
 		#50;
@@ -59,6 +61,33 @@ module Fetch_Instruction_tb;
       Clock = ~Clock;
 		#50;
       Clock = ~Clock;		
+		#50;
+      Clock = ~Clock;
+		#50;
+      Clock = ~Clock;
+		#50;
+      Clock = ~Clock;
+		#50;
+      Clock = ~Clock;
+		#50;
+      Clock = ~Clock;
+		#50;
+      Clock = ~Clock;
+		#50;
+      Clock = ~Clock;
+		#50;
+      Clock = ~Clock;
+		#50;
+      Clock = ~Clock;
+		#50;
+      Clock = ~Clock;
+		#50;
+      Clock = ~Clock;
+		#50;
+		reg31 = w_reg31;
+      Clock = ~Clock;
+		#50;
+      Clock = ~Clock;
 		#50;
       Clock = ~Clock;
 		#50;

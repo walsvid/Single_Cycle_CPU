@@ -18,11 +18,12 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module Fetch_Instruction(Clock, Reset, Zero, reg31, Inst);
+module Fetch_Instruction(Clock, Reset, Zero, reg31, w_reg31, Inst);
 	input Clock;
 	input Reset;
 	input Zero;
 	input [31:0] reg31;
+	output [31:0] w_reg31;
 	output [31:0]	Inst;
 	
 	wire [31:0] next_pc, addr, pc_4, imm32, imm32_4, pc_b, pc_jr, pc_j;
@@ -60,7 +61,7 @@ module Fetch_Instruction(Clock, Reset, Zero, reg31, Inst);
 	
 	//Jump Register
 	assign pc_jr = reg31;
-	
+	//Set Control Signal
 	always @(*) begin
 		if (op == 6'b000010 || op == 6'b000011) begin
 			assign Jump = 1'b1;
@@ -96,5 +97,7 @@ module Fetch_Instruction(Clock, Reset, Zero, reg31, Inst);
 	assign tmp2 = Jump;
 	assign tmp3 = Jr;
 	assign tmp4 = Branch;
+	
+	assign w_reg31 = (op == 6'b000011) ? pc_4 : 0;
 	
 endmodule
