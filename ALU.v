@@ -18,14 +18,13 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module ALU(A, B, ALUctr, Result, Zero, Overflow, ari);
+module ALU(A, B, ALUctr, Result, Zero, Overflow);
 	input		[31:0]	A;
 	input		[31:0]	B;
 	input		[3:0]		ALUctr;
 	output	[31:0]	Result;
 	output				Zero;
 	output				Overflow;
-	output				ari;
 	
 	wire [31:0] r_add_sub, r_and, r_or, r_xor, r_shift, r_lui;
 	
@@ -54,9 +53,5 @@ module ALU(A, B, ALUctr, Result, Zero, Overflow, ari);
 	assign Zero = ~| Result;
 
 	assign Overflow = (ALUctr == 4'b1110 || ALUctr == 4'b0100) ? Overflow_ : 1'b0;
-	
-	//tmp
-	assign ari = i_ari;
-
 
 endmodule

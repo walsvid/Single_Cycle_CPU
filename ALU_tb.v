@@ -33,7 +33,6 @@ module ALU_tb;
 	wire [31:0] Result;
 	wire Zero;
 	wire Overflow;
-	wire ari;
 
 	// Instantiate the Unit Under Test (UUT)
 	ALU uut (
@@ -42,8 +41,7 @@ module ALU_tb;
 		.ALUctr(ALUctr), 
 		.Result(Result), 
 		.Zero(Zero), 
-		.Overflow(Overflow),
-		.ari(ari)
+		.Overflow(Overflow)
 	);
 
 	initial begin
