@@ -18,10 +18,13 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module Fetch_Instruction(Clock, Reset, Zero, reg31, w_reg31, Inst);
+module Fetch_Instruction(Clock, Reset, Zero, Branch_eq, Branch_ne, Jump, reg31, w_reg31, Inst);
 	input Clock;
 	input Reset;
 	input Zero;
+	input Branch_eq;
+	input Branch_ne;
+	input Jump;
 	input [31:0] reg31;
 	output [31:0] w_reg31;
 	output [31:0]	Inst;
@@ -32,7 +35,7 @@ module Fetch_Instruction(Clock, Reset, Zero, reg31, w_reg31, Inst);
 	wire [5:0] op;
 	wire [4:0] rs;
 	wire [1:0] PCsource;
-	reg Jump, Jr, Branch;
+	//reg Jump, Jr, Branch;
 	
 	PC pc_unit(next_pc, Clock, Reset, addr);
 	INST_MEM i_rom(addr, Inst);
@@ -46,12 +49,19 @@ module Fetch_Instruction(Clock, Reset, Zero, reg31, w_reg31, Inst);
 	ADD32 adder_pc_4(32'h4, addr, pc_4);
 	
 	//Branch Instructions
-	wire beq, bne;
-	assign beq = (op == 6'b000100) ? 1'b1 : 1'b0;
-	assign bne = (op == 6'b000101) ? 1'b1 : 1'b0;
-	wire b_z, nb_nz;
-	and(b_z, beq, Zero);
-	and(nb_nz, bne, ~Zero);
+	//wire beq, bne;
+	//assign beq = (op == 6'b000100) ? 1'b1 : 1'b0;
+	//assign bne = (op == 6'b000101) ? 1'b1 : 1'b0;
+	//wire b_z, nb_nz;
+	wire Branch;
+	wire Jr;
+	//and(b_z, beq, Zero);
+	//and(nb_nz, bne, ~Zero);
+	assign Branch = (Branch_eq & Zero) | (Branch_ne & ~Zero) ;
+	assign Jr = (op == 6'b000000 && rs == 5'b11111) ? 1'b1 : 1'b0;
+	
+	
+	
 	SIGN_EXT_16_32 ext_imm(imm16, imm32);
 	SHIFTER shifter_imm(imm32, 5'h2, 1'b0, 1'b0, imm32_4);
 	ADD32 adder_pc_4_imm32_4(pc_4, imm32_4, pc_b);
@@ -62,7 +72,7 @@ module Fetch_Instruction(Clock, Reset, Zero, reg31, w_reg31, Inst);
 	//Jump Register
 	assign pc_jr = reg31;
 	//Set Control Signal
-	always @(*) begin
+	/*always @(*) begin
 		if (op == 6'b000010 || op == 6'b000011) begin
 			assign Jump = 1'b1;
 			assign Jr = 1'b0;
@@ -84,7 +94,7 @@ module Fetch_Instruction(Clock, Reset, Zero, reg31, w_reg31, Inst);
 			assign Branch = 1'b0;
 		end
 	end
-
+*/
 
 	//Cal PCsource
 	assign PCsource =	(Jump == 1'b1) ? 2'b00 : // Jump

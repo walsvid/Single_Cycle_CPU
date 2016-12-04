@@ -4,9 +4,9 @@
 // Company: 
 // Engineer:
 //
-// Create Date:   20:26:58 12/02/2016
+// Create Date:   06:32:07 01/01/2008
 // Design Name:   Fetch_Instruction
-// Module Name:   C:/Users/wen/git/Single_Cycle_CPU/Fetch_Instruction_tb.v
+// Module Name:   E:/Single_Cycle_CPU/Fetch_Instruction_tb.v
 // Project Name:  Single_Cycle_CPU
 // Target Device:  
 // Tool versions:  
@@ -28,6 +28,9 @@ module Fetch_Instruction_tb;
 	reg Clock;
 	reg Reset;
 	reg Zero;
+	reg Branch_eq;
+	reg Branch_ne;
+	reg Jump;
 	reg [31:0] reg31;
 
 	// Outputs
@@ -39,8 +42,11 @@ module Fetch_Instruction_tb;
 		.Clock(Clock), 
 		.Reset(Reset), 
 		.Zero(Zero), 
-		.reg31(reg31),
-		.w_reg31(w_reg31),
+		.Branch_eq(Branch_eq), 
+		.Branch_ne(Branch_ne), 
+		.Jump(Jump), 
+		.reg31(reg31), 
+		.w_reg31(w_reg31), 
 		.Inst(Inst)
 	);
 
@@ -49,14 +55,19 @@ module Fetch_Instruction_tb;
 		Clock = 0;
 		Reset = 1;
 		Zero = 0;
-		reg31 = 32'h0;
+		Branch_eq = 0;
+		Branch_ne = 0;
+		Jump = 0;
+		reg31 = 0;
 
 		// Wait 100 ns for global reset to finish
 		#50;
       Clock = ~Clock;
 		Reset = 0;
+		Jump = 1;
 		#50;
       Clock = ~Clock;
+		Jump = 0;
 		#50;
       Clock = ~Clock;
 		#50;
@@ -109,6 +120,7 @@ module Fetch_Instruction_tb;
 		#50;
       Clock = ~Clock;		
 		// Add stimulus here
+
 	end
       
 endmodule
