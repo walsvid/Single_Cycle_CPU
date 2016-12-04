@@ -18,16 +18,16 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module Control_Unit(op, func, ALUctr, RegWr, ALUSrc, RegDst, MemtoReg, MemWr, Branch, Jump, Extop);
+module Control_Unit(op, func, ALUctr, RegWr, ALUSrc, RegDst, MemtoReg, MemWr, Branch_eq, Branch_ne, Jump, Extop);
 	input [5:0] op;
 	input [5:0] func;
 	output [3:0] ALUctr;
-	output RegWr, ALUSrc, RegDst, MemtoReg, MemWr, Branch, Jump, Extop;
+	output RegWr, ALUSrc, RegDst, MemtoReg, MemWr, Branch_eq, Branch_ne, Jump, Extop;
 	
-	wire RegWr, ALUSrc, RegDst, MemtoReg, MemWr, Branch, Jump, Extop, R_type;
+	wire RegWr, ALUSrc, RegDst, MemtoReg, MemWr, Branch_eq, Branch_ne, Jump, Extop, R_type;
 	wire [3:0] ALUop, ALUop_ctr;
 	
-	Main_CTR main_ctr(op, RegWr, ALUSrc, RegDst, MemtoReg, MemWr, Branch, Jump, Extop, ALUop, R_type);
+	Main_CTR main_ctr(op, RegWr, ALUSrc, RegDst, MemtoReg, MemWr, Branch_eq, Branch_ne, Jump, Extop, ALUop, R_type);
 	
 	ALU_CTR alu_ctr(func, ALUop_ctr);
 	

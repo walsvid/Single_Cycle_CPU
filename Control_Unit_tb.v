@@ -35,7 +35,8 @@ module Control_Unit_tb;
 	wire RegDst;
 	wire MemtoReg;
 	wire MemWr;
-	wire Branch;
+	wire Branch_eq;
+	wire Branch_ne;
 	wire Jump;
 	wire Extop;
 
@@ -49,7 +50,8 @@ module Control_Unit_tb;
 		.RegDst(RegDst), 
 		.MemtoReg(MemtoReg), 
 		.MemWr(MemWr), 
-		.Branch(Branch), 
+		.Branch_eq(Branch_eq),
+		.Branch_ne(Branch_ne),
 		.Jump(Jump), 
 		.Extop(Extop)
 	);
@@ -108,6 +110,8 @@ module Control_Unit_tb;
 		op = 6'b000010;
 		#50;
 		op = 6'b000011;
+		#50
+		op = 6'b000101;
 
         
 		// Add stimulus here
