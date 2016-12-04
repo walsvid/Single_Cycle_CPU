@@ -18,7 +18,7 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module Instruction_Interpreter(op, R_type, addi, andi, ori, xori, lw, sw, beq, lui, j ,jal);
+module Instruction_Interpreter(op, R_type, addi, andi, ori, xori, lw, sw, beq, bne, lui, j ,jal);
 	input	[5:0]	op;
 	output R_type;
 	output addi;
@@ -28,6 +28,7 @@ module Instruction_Interpreter(op, R_type, addi, andi, ori, xori, lw, sw, beq, l
 	output lw;
 	output sw;
 	output beq;
+	output bne;
 	output lui;
 	output j;
 	output jal;
@@ -40,6 +41,7 @@ module Instruction_Interpreter(op, R_type, addi, andi, ori, xori, lw, sw, beq, l
 	and(lw,		 op[5], ~op[4], ~op[3], ~op[2],  op[1],  op[0]);
 	and(sw,		 op[5], ~op[4],  op[3], ~op[2],  op[1],  op[0]);
 	and(beq,		~op[5], ~op[4], ~op[3],  op[2], ~op[1], ~op[0]);
+	and(bne,		~op[5], ~op[4], ~op[3],  op[2], ~op[1],  op[0]);
 	and(lui,		~op[5], ~op[4],  op[3],  op[2],  op[1],  op[0]);
 	and(j,		~op[5], ~op[4], ~op[3], ~op[2],  op[1], ~op[0]);
 	and(jal,		~op[5], ~op[4], ~op[3], ~op[2],  op[1],  op[0]);
