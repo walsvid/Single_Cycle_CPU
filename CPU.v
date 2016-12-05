@@ -41,7 +41,9 @@ module CPU(Clock, Reset, busW, DataIn, ALU_Result);
 	Control_Unit controller(op, func, ALUctr, RegWr, ALUSrc, RegDst, MemtoReg, MemWr, Branch_eq, Branch_ne, Jump, Extop);
 	
 	MUX_5_2_1 mux_regdst(Rd, Rt, RegDst, Rw);
-	
+
+	MUX_32_2_1 mux_a(A,B,Sel,o);
+	MUX_32_2_1 mux_b(A,B,Sel,o);
 	
 
 endmodule
