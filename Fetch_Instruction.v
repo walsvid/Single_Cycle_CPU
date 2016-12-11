@@ -104,9 +104,6 @@ module Fetch_Instruction(Clock, Reset, Zero, Branch_eq, Branch_ne, Jump, reg31, 
 	
 	MUX_32_4_1 mux_pc_source(pc_j, pc_b, pc_jr, pc_4, PCsource, next_pc);
 	
-	assign tmp2 = Jump;
-	assign tmp3 = Jr;
-	assign tmp4 = Branch;
 	
 	assign w_reg31 = (op == 6'b000011) ? pc_4 : 0;
 	
