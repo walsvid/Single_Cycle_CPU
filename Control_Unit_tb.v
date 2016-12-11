@@ -39,6 +39,7 @@ module Control_Unit_tb;
 	wire Branch_ne;
 	wire Jump;
 	wire Extop;
+	wire Shift;
 
 	// Instantiate the Unit Under Test (UUT)
 	Control_Unit uut (
@@ -53,7 +54,8 @@ module Control_Unit_tb;
 		.Branch_eq(Branch_eq),
 		.Branch_ne(Branch_ne),
 		.Jump(Jump), 
-		.Extop(Extop)
+		.Extop(Extop),
+		.Shift(Shift)
 	);
 
 	initial begin

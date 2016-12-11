@@ -18,18 +18,18 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module Control_Unit(op, func, ALUctr, RegWr, ALUSrc, RegDst, MemtoReg, MemWr, Branch_eq, Branch_ne, Jump, Extop);
+module Control_Unit(op, func, ALUctr, RegWr, ALUSrc, RegDst, MemtoReg, MemWr, Branch_eq, Branch_ne, Jump, Extop, Shift);
 	input [5:0] op;
 	input [5:0] func;
 	output [3:0] ALUctr;
-	output RegWr, ALUSrc, RegDst, MemtoReg, MemWr, Branch_eq, Branch_ne, Jump, Extop;
+	output RegWr, ALUSrc, RegDst, MemtoReg, MemWr, Branch_eq, Branch_ne, Jump, Extop, Shift;
 	
-	wire RegWr, ALUSrc, RegDst, MemtoReg, MemWr, Branch_eq, Branch_ne, Jump, Extop, R_type;
+	wire RegWr, ALUSrc, RegDst, MemtoReg, MemWr, Branch_eq, Branch_ne, Jump, Extop, R_type, Shift;
 	wire [3:0] ALUop, ALUop_ctr;
 	
-	Main_CTR main_ctr(op, RegWr, ALUSrc, RegDst, MemtoReg, MemWr, Branch_eq, Branch_ne, Jump, Extop, ALUop, R_type);
+	Main_CTR main_ctr_(op, RegWr, ALUSrc, RegDst, MemtoReg, MemWr, Branch_eq, Branch_ne, Jump, Extop, ALUop, R_type);
 	
-	ALU_CTR alu_ctr(func, ALUop_ctr);
+	ALU_CTR alu_ctr_(func, ALUop_ctr, Shift);
 	
 	MUX_4_2_1 mux_main_alu_op(ALUop, ALUop_ctr, R_type, ALUctr);
 
