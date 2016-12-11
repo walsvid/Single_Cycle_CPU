@@ -43,7 +43,7 @@ module Main_CTR(op, RegWr, ALUSrc, RegDst, MemtoReg, MemWr, Branch_eq, Branch_ne
 	assign RegDst = r_type;
 	assign ALUSrc = addi | andi | ori | xori | lw | sw | beq | lui;
 	assign MemtoReg = lw;
-	assign RegWr = r_type | addi | andi | ori | xori | lw;
+	assign RegWr = r_type | addi | andi | ori | xori | lw | jal;
 	assign MemWr = sw;
 	assign Extop = lw | sw | beq;
 	assign R_type = r_type;
