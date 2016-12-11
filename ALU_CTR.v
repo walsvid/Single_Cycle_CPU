@@ -18,9 +18,10 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module ALU_CTR(func, ALUop_ctr);
+module ALU_CTR(func, ALUop_ctr, Shift);
 	input		[5:0]		func;
 	output	[3:0]		ALUop_ctr;
+	output				Shift;
 	
 	assign ALUop_ctr	= 	(func == 6'b100000) ? 4'b1110 : 
 								(func == 6'b100010) ? 4'b0100 : 	
@@ -33,4 +34,5 @@ module ALU_CTR(func, ALUop_ctr);
 								(func == 6'b001000) ? 4'b1100 : 
 								4'bxxxx;
 
+	assign Shift = (func == 6'b000000 || func == 6'b000010 || func == 6'b000011) ? 1'b1 : 1'b0;
 endmodule
