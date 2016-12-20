@@ -38,6 +38,7 @@ module CPU(Clock, Reset, tmp);
 	wire [5:0] op;
 	
 	wire [31:0] dataout;
+	wire using_jr;
 	
 	//tmp
 	assign tmp = Inst;
@@ -50,10 +51,13 @@ module CPU(Clock, Reset, tmp);
 	assign shamt = {{27{0}},Inst[10:6]};
 	assign imm16 = Inst[15:0];
 
+
 	Fetch_Instruction fetch(Clock, Reset, Zero, Branch_eq, Branch_ne, Jump, reg31, w_reg31, Inst);
 	and(Write, ~Overflow, RegWr);
 	MUX_5_2_1 mux_regdst(Rd, Rt, RegDst, Rw);
-	RegFile regiters(Rs, Rt, Rw, Clock, Write, busW, busA, busB, w_reg31, reg31);
+	
+	assign using_jr = (op == 6'b000011) ? 1 : 0;
+	RegFile regiters(Rs, Rt, Rw, Clock, Write, busW, busA, busB, w_reg31, reg31, using_jr);
    Control_Unit controller(op, func, ALUctr, RegWr, ALUSrc, RegDst, MemtoReg, MemWr, Branch_eq, Branch_ne, Jump, Extop, Shift);
 	ALU myalu(ALU_A, ALU_B, ALUctr, ALU_Result, Zero, Overflow);
 

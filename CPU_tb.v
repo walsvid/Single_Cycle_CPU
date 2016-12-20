@@ -88,7 +88,29 @@ module CPU_tb;
 		#50;
       Clock = ~Clock;
 		#50;
-      Clock = ~Clock;		
+      Clock = ~Clock;
+		#50;
+      Clock = ~Clock;
+		#50;
+      Clock = ~Clock;
+		#50;
+      Clock = ~Clock;
+		#50;
+      Clock = ~Clock;
+		#50;
+      Clock = ~Clock;
+		#50;
+      Clock = ~Clock;
+		#50;
+      Clock = ~Clock;
+		#50;
+      Clock = ~Clock;
+		#50;
+      Clock = ~Clock;
+		#50;
+      Clock = ~Clock;
+		#50;
+      Clock = ~Clock;
 		// Add stimulus here
 
 	end
