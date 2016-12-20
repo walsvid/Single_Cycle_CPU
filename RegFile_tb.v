@@ -4,9 +4,9 @@
 // Company: 
 // Engineer:
 //
-// Create Date:   02:03:51 01/01/2008
+// Create Date:   00:13:18 01/01/2008
 // Design Name:   RegFile
-// Module Name:   E:/Single_Cycle_CPU/RegFile_tb.v
+// Module Name:   D:/ssss/Single_Cycle_CPU/RegFile_tb.v
 // Project Name:  Single_Cycle_CPU
 // Target Device:  
 // Tool versions:  
@@ -25,78 +25,79 @@
 module RegFile_tb;
 
 	// Inputs
-	reg [4:0] Rn1;
-	reg [4:0] Rn2;
-	reg [4:0] Wn;
-	reg Write;
-	reg [31:0] Wd;
+	reg [4:0] Ra;
+	reg [4:0] Rb;
+	reg [4:0] Rw;
 	reg Clock;
+	reg Write;
+	reg [31:0] busW;
+	reg [31:0] w_R31;
 
 	// Outputs
-	wire [31:0] A;
-	wire [31:0] B;
+	wire [31:0] busA;
+	wire [31:0] busB;
+	wire [31:0] r_R31;
 
 	// Instantiate the Unit Under Test (UUT)
 	RegFile uut (
-		.Rn1(Rn1), 
-		.Rn2(Rn2), 
-		.Wn(Wn), 
+		.Ra(Ra), 
+		.Rb(Rb), 
+		.Rw(Rw), 
+		.Clock(Clock), 
 		.Write(Write), 
-		.Wd(Wd), 
-		.A(A), 
-		.B(B), 
-		.Clock(Clock)
+		.busW(busW), 
+		.busA(busA), 
+		.busB(busB), 
+		.w_R31(w_R31), 
+		.r_R31(r_R31)
 	);
 
 	initial begin
 		// Initialize Inputs
-		Rn1 = 0;
-		Rn2 = 0;
-		Wn = 0;
-		Write = 0;
-		Wd = 0;
+		Ra = 0;
+		Rb = 0;
+		Rw = 0;
 		Clock = 0;
+		Write = 1;
+		busW = 0;
+		w_R31 = 32'hFFFF0000;
 
 		// Wait 100 ns for global reset to finish
 		#100;
-      Rn1 = 1;
-		Rn2 = 0;
-		Wn = 1;
-		Write = 1;
-		Wd = 4;
+      Ra = 1;
+		Rb = 0;
+		Rw = 1;
+		busW = 4;
 		Clock = ~Clock;
 
 		#100;
 		Clock = ~Clock;
 		
     	#100;
-      Rn1 = 1;
-		Rn2 = 2;
-		Wn = 2;
-		Write = 1;
-		Wd = 5;
+      Ra = 1;
+		Rb = 2;
+		Rw = 2;
+		busW = 5;
 		Clock = ~Clock;
 		
 		#100;
 		Clock = ~Clock;
 		
     	#100;
-      Rn1 = 1;
-		Rn2 = 2;
-		Wn = 2;
-		Write = 1;
-		Wd = 5;
+      Ra = 1;
+		Rb = 2;
+		Rw = 2;
+		busW = 5;
 		Clock = ~Clock;
 		
 		#100;
 		Clock = ~Clock;	
 		
     	#100;
-      Rn1 = 1;
-		Rn2 = 2;
-		Wn = 0;
-		Write = 0;
-		Wd = 0;
+      Ra = 1;
+		Rb = 2;
+		Rw = 0;
+		busW = 0;
 		Clock = ~Clock;
 		// Add stimulus here
 
